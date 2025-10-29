@@ -27,9 +27,8 @@ export default router.post("/", async (req, res) => {
     // object form
     let studentRollno = await studentModule.findOne({ usn: usn });
     if (studentRollno) {
-      return res.send({
-        message: "roll number already exist",
-      });
+      return send(res,setErrmsg(RESPONSE.ALREADYEXIT,"usn")
+      );
     }
     // arry form
     // let studentRollno = await studentModule.find({ usn: usn });
