@@ -11,12 +11,12 @@ export const RESPONSE = {
     code: 201,
     message: "is requried",
   },
-  REQURIED: {
+  INVALID: {
     code: 202,
     message: "is inavlid",
   },
   ALREADYEXIT: {
     code: 205,
-    message: "Already exsiting",
+    message: "Already exiting",
   },
 };

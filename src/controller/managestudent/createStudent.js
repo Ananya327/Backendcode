@@ -13,7 +13,7 @@ export default router.post("/", async (req, res) => {
       return send(res, setErrmsg(RESPONSE.REQURIED, "name"));
     }
     if (!email || email == undefined) {
-     return send(res, setErrmsg(RESPONSE.REQURIED, "email"));
+     return send(res, setErrmsg(RESPONSE.INVALID, "email"));
     }
     
     if (!rollno || rollno == undefined) {
