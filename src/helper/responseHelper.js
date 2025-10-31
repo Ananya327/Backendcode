@@ -2,12 +2,13 @@
 
 // import { response } from "express"
 
-export const send=(res,response,data={})=>{
+export const send=(res,response,data={},pageData={})=>{
     return res.send({
-    message:response.message,
-    code:response.code,
-    data:data}
-    )
+      message: response.message,
+      code: response.code,
+      pageData: pageData,
+      data: data,
+    });
 }
 export const setErrmsg=(response,param)=>{
     return{

@@ -19,4 +19,9 @@ export const RESPONSE = {
     code: 205,
     message: "Already exiting",
   },
+
+  NOSTU: {
+    code: 206,
+    message: "no student in the list",
+  },
 };
