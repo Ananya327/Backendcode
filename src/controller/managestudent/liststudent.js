@@ -22,7 +22,7 @@ export default route.get("/", async (req, res) => {
     // pagenation concept
 
     let page = req.query.page ? Number(req.query.page) : 1;
-    let limit = req.query.limit ? Number(req.query.limit) : 2;
+    let limit = req.query.limit ? Number(req.query.limit) : 10;
     let query = {
       isactive: STATE.ACTIVE,
       name: { $regex: req.query.searchKey ?? "", $options: "i" },

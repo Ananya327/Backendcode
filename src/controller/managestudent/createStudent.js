@@ -13,22 +13,21 @@ export default router.post("/", async (req, res) => {
       return send(res, setErrmsg(RESPONSE.REQURIED, "name"));
     }
     if (!email || email == undefined) {
-     return send(res, setErrmsg(RESPONSE.INVALID, "email"));
+      return send(res, setErrmsg(RESPONSE.INVALID, "email"));
     }
-    
+
     if (!rollno || rollno == undefined) {
-     return send(res, setErrmsg(RESPONSE.REQURIED, "rollno"));
+      return send(res, setErrmsg(RESPONSE.REQURIED, "rollno"));
     }
-    
+
     if (!usn || usn == undefined) {
       return send(res, setErrmsg(RESPONSE.REQURIED, "usn"));
     }
-    
+
     // object form
     let studentRollno = await studentModule.findOne({ usn: usn });
     if (studentRollno) {
-      return send(res,setErrmsg(RESPONSE.ALREADYEXIT,"usn")
-      );
+      return send(res, setErrmsg(RESPONSE.ALREADYEXIT, "usn"));
     }
     // arry form
     // let studentRollno = await studentModule.find({ usn: usn });
@@ -37,23 +36,23 @@ export default router.post("/", async (req, res) => {
     //         message: "roll number already exist",
     //       });
     //     }
+
+    // regex to check email format
+    let ismail = email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+    // validation check
+    if (!ismail) {
+      return send(res, setErrmsg(RESPONSE.INVAILD, "email"));
+    }
     // if remove x it will hit unknow error
-    let x=await studentModule.create({
+    let x = await studentModule.create({
       //   //     ...req.body
       name,
       email,
       rollno,
       usn,
     });
-    // regex to check email format
-    let ismail = email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
-    // validation check
-    if (!ismail) {
-       return send(res, setErrmsg(RESPONSE.INVAILD, "email"));
-    }
-
     console.log({ ...req.body });
-    return send(res,RESPONSE.SUCCESS,x);
+    return send(res, RESPONSE.SUCCESS, x);
   } catch (e) {
     console.log("error", e);
        return send(res, setErrmsg(RESPONSE.UNKNOWN_ERROR));
